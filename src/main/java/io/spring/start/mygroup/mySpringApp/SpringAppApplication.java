@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 
 
 import io.spring.start.mygroup.mySpringApp.component.DemoBean;
+import io.spring.start.mygroup.mySpringApp.component.EmployeeBean;
 
 @SpringBootApplication
 public class SpringAppApplication {
@@ -15,20 +16,13 @@ public class SpringAppApplication {
 	public static void main(String[] args)
 	{
 		logger.debug("Welcome to Spring Concept Demo");
-		logger.info("Welcome to Spring Concept Demo");
-		logger.error("Welcome to Spring Concept Demo");
-		logger.warn("Welcome to Spring Concept Demo");
-		logger.trace("Welcome to Spring Concept Demo");
-
-		/* level = TRACE will print TRACE,DEBUG,WARN,ERROR,INFO messages
-		 * level = DEBUG will print DEBUG,WARN,ERROR,INFO messages
-		 * level = INFO will print WARN,ERROR,INFO messages
-		 * level = WARN will print WARN,ERROR messages
-		 * level = ERROR will print ERROR messages
-		 */
-
 		ApplicationContext context=SpringApplication.run(SpringAppApplication.class, args);
-		logger.debug("Checking Context:"+context.getBean(DemoBean.class));
+		logger.debug("Checking Context:{}",context.getBean(DemoBean.class));
 		logger.debug("\n*** Example using @Autowire annotation on property***");
+		EmployeeBean employeeBean = context.getBean(EmployeeBean.class);
+		employeeBean.setEid(104);
+		employeeBean.setEname("Spring Framework Guru");
+		employeeBean.showEmployeeDetails();
+		
 	}
 }
